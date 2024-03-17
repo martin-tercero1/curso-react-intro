@@ -1,0 +1,34 @@
+.Icon {
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-right: 20px;
+}
+
+.Icon-check {
+  color: var(--green-gradient);
+}
+
+.Icon-uncheck, .Icon-delete {
+  color: var(--second-100);
+}
+
+.Icon-uncheck:hover {
+  color: var(--green-gradient);
+}
+
+.Icon-delete {
+  margin-right: 20px;
+}
+
+.Icon-delete:hover {
+    color: var(--primary);
+}

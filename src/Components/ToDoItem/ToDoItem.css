@@ -1,0 +1,22 @@
+.ToDoItem {
+  height: 60px;
+  background-color: var(--dark-800);
+  margin-bottom: 20px;
+  max-width: 1214px;
+  min-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  padding: 0;
+}
+
+.ToDoTask {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.task-completed {
+  text-decoration: line-through;
+}

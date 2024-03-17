@@ -1,0 +1,21 @@
+.Empty-container {
+  text-align: center;
+  margin: 0 auto;
+  width: 538px;
+  height: 356px;
+  position: relative;
+}
+
+.Empty-image {
+  position: absolute;
+  top: -30px;
+  right: 30px;
+}
+
+.Empty-border {
+  border: 4px solid;
+  border-image: var(--gradient, #632329) 1;
+  opacity: 0.2;
+  width: 100%;
+  height: 100%;
+}

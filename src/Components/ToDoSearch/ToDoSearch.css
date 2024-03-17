@@ -1,0 +1,24 @@
+.ToDoSearch {
+  height: 60px;
+  max-width: 1214px;
+  min-width: 500px;
+  color: var(--dark-900);
+  margin: 75px 113px 0 113px;
+
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+.Search-input {
+  background-color: var(--second-200);
+  outline: none;
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 17px;
+}

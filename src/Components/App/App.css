@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;1,400&display=swap");
+
+:root {
+  --primary: #F25551;
+  --second-200: #feede1;
+  --second-100: #FFFBFF;
+  --gradient: linear-gradient(180deg, #632329 0%, #F25551 49.65%, rgba(80, 242, 131, 0.80) 100%);
+  --green-gradient:#50F283;
+  --dark-900: #241722;
+  --dark-800: #352432;
+  --dark-700: #462730;
+  --dark-600: #462730;
+}
+
+body {
+  background-color: var(--dark-900);
+  font-family: "Poppins";
+  color: var(--second-200);
+}

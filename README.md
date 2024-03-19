@@ -11,13 +11,14 @@ Basic concepts learned during the intro course were:
 - useContext hook to avoid prop drilling
 - Feature-First directories to have an orgnized structure
 - useState to store data related to an specific component
-- Handling events like onChange, onClick and onSubmit.
+- Handling events like onChange, onClick and onSubmit
 
 Render Patterns practiced during the 2nd course:
-- Components composition
-- Custom Hooks
+- Components composition, this also helps avoid prop drilling and improves code readability
+- Custom Hooks sometimes will be a better option, instead of using React Context
 - Render props and render functions
 - High Order Components
+- State colocation (Should the state be close to where is used or should we have stateful and stateless components)
 
 
 ## Future changes

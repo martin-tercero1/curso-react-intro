@@ -1,18 +1,10 @@
-import React, { useContext } from "react";
+import { cloneElement, Children } from "react";
 import "./ToDoTitle.css";
-import { ToDoContext } from "../ToDoContext";
-import {Modal} from "../Modal";
-import { ToDoForm } from "../ToDoForm/ToDoForm";
 
-function ToDoTitle({ name = "📃 New List", children }) {
-  const { openModal, setOpenModal } = useContext(ToDoContext);
-
+function ToDoTitle({setOpenModal, name = "📃 New List", loading, children }) {
+  
   const handleOpenModal = () => {
     setOpenModal(true);
-  }
-
-  const handleCloseModel = () => {
-    setOpenModal(false);
   }
 
   return (
@@ -27,7 +19,7 @@ function ToDoTitle({ name = "📃 New List", children }) {
         <span>{name}</span>
         <img alt=""></img>
       </div>
-      {children}
+      {Children.toArray(children).map(child => cloneElement(child, { loading })) }
       <button className="btn-title">
         <img
           src="https://img.icons8.com/ios/24/F25551/delete--v1.png"
@@ -35,18 +27,13 @@ function ToDoTitle({ name = "📃 New List", children }) {
         />
         Delete List
       </button>
-      <button
-        className="btn-title"
-        onClick={handleOpenModal}
-      >
+      <button className="btn-title" onClick={handleOpenModal}>
         <img
           src="https://img.icons8.com/ios/24/F25551/plus-2-math.png"
           alt="plus-2-math"
         />
         Add to-do
       </button>
-
-      {openModal && <Modal><ToDoForm></ToDoForm></Modal>}
     </div>
   );
 }

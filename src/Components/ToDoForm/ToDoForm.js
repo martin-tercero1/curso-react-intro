@@ -1,20 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./ToDoForm.css";
-import { ToDoContext } from "../ToDoContext";
 
-function ToDoForm({handleCloseModal}) {
-  const { 
-    setOpenModal,
-    addToDo
-   } = useContext(ToDoContext);
-
+function ToDoForm({ setOpenModal , addToDo}) {
   const [newToDoValue, setNewToDoValue] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addToDo(newToDoValue);
     setOpenModal(false);
-  }
+  };
 
   const handleCancel = (event) => {
     setOpenModal(false);
@@ -22,7 +16,7 @@ function ToDoForm({handleCloseModal}) {
 
   const handleChange = (event) => {
     setNewToDoValue(event.target.value);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="ToDoForm">
@@ -35,12 +29,19 @@ function ToDoForm({handleCloseModal}) {
         required
       />
       <div className="ToDoForm-buttonsContainer">
-        <button onClick={handleCancel} type="button" className="ToDoForm-button ToDoForm-button--cancel">
+        <button
+          onClick={handleCancel}
+          type="button"
+          className="ToDoForm-button ToDoForm-button--cancel"
+        >
           Cancel
         </button>
-        <button type="submit" className="ToDoForm-button ToDoForm-button--submit">
+        <button
+          type="submit"
+          className="ToDoForm-button ToDoForm-button--submit"
+        >
           Add
-          </button>
+        </button>
       </div>
     </form>
   );

@@ -1,12 +1,11 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-const ToDoContext = createContext();
-
-function ToDoProvider({ children }) {
+function useToDos() {
   const {
     items: toDos,
     saveItems: saveToDos,
+    synchronize: synchronizeToDos,
     loading,
     error,
   } = useLocalStorage("TODOS", []);
@@ -21,6 +20,8 @@ function ToDoProvider({ children }) {
 
     return todoText.includes(searchText);
   });
+
+  console.log(searchedToDos);
 
   const addToDo = (text) => {
     const newToDos = [...toDos];
@@ -47,30 +48,25 @@ function ToDoProvider({ children }) {
 
   const [openModal, setOpenModal] = useState(false);
 
-  return (
-    <ToDoContext.Provider
-      value={{
-        completedToDos,
-        totalToDos,
-        searchValue,
-        setSearchValue,
-        searchedToDos,
-        checkUncheckToDo,
-        deleteToDo,
-        toDos,
-        loading,
-        error,
-        openModal,
-        setOpenModal,
-        addToDo
-      }}
-    >
-      {children}
-    </ToDoContext.Provider>
-  );
+  return {
+    completedToDos,
+    totalToDos,
+    searchValue,
+    setSearchValue,
+    searchedToDos,
+    checkUncheckToDo,
+    deleteToDo,
+    toDos,
+    loading,
+    error,
+    openModal,
+    setOpenModal,
+    addToDo,
+    synchronizeToDos,
+  };
 }
 
-export { ToDoContext, ToDoProvider };
+export { useToDos };
 
 // localStorage.removeItem('TODOS');
 // const defaultToDos = [

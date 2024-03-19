@@ -22,3 +22,7 @@
   font-weight: 600;
   font-size: 17px;
 }
+
+.Search-input:disabled {
+  opacity: 45%;
+}

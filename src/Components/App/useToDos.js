@@ -9,7 +9,9 @@ function useToDos() {
     loading,
     error,
   } = useLocalStorage("TODOS", []);
+
   const [searchValue, setSearchValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const completedToDos = toDos.filter((toDo) => toDo.completed === true).length;
   const totalToDos = toDos.length;
@@ -20,8 +22,6 @@ function useToDos() {
 
     return todoText.includes(searchText);
   });
-
-  console.log(searchedToDos);
 
   const addToDo = (text) => {
     const newToDos = [...toDos];
@@ -46,23 +46,30 @@ function useToDos() {
     saveToDos(newToDos);
   };
 
-  const [openModal, setOpenModal] = useState(false);
-
-  return {
-    completedToDos,
+  const states = {
     totalToDos,
     searchValue,
-    setSearchValue,
     searchedToDos,
     checkUncheckToDo,
-    deleteToDo,
     toDos,
     loading,
     error,
     openModal,
+  };
+
+  const setters = {
     setOpenModal,
     addToDo,
+    deleteToDo,
+    completedToDos,
+    setSearchValue,
     synchronizeToDos,
+  };
+
+
+
+  return {
+    states, setters
   };
 }
 

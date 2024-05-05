@@ -1,19 +1,22 @@
-import "./App.css";
-import { ToDoCounter } from "../ToDoCounter/ToDoCounter";
+import { useNavigate } from "react-router-dom";
+import { ToDoCounter } from "../../Components/ToDoCounter/ToDoCounter";
 //import { ToDoCreateList } from "../ToDoCreateList/ToDoCreateList";
-import { ToDoSearch } from "../ToDoSearch/ToDoSearch";
-import { ToDoItem } from "../ToDoItem/ToDoItem";
-import { ToDoList } from "../ToDoList/ToDoList";
-import { ToDoTitle } from "../ToDoTitle/ToDoTitle";
-import { ToDosLoading } from "../ToDosLoading/ToDosLoading";
-import { ToDosError } from "../ToDosError/ToDosError";
-import { ToDosEmpty } from "../ToDosEmpty/ToDosEmpty";
-import { useToDos } from "./useToDos";
-import { Modal } from "../Modal";
-import { ToDoForm } from "../ToDoForm/ToDoForm";
-import { ChangeAlertWithStorageListener } from '../ChangeAlert'
+import { ToDoSearch } from "../../Components/ToDoSearch/ToDoSearch";
+import { ToDoItem } from "../../Components/ToDoItem/ToDoItem";
+import { ToDoList } from "../../Components/ToDoList/ToDoList";
+import { ToDoTitle } from "../../Components/ToDoTitle/ToDoTitle";
+import { ToDosLoading } from "../../Components/ToDosLoading/ToDosLoading";
+import { ToDosError } from "../../Components/ToDosError/ToDosError";
+import { ToDosEmpty } from "../../Components/ToDosEmpty/ToDosEmpty";
+import { useToDos } from "../../useToDos";
+import { Modal } from "../../Components/Modal";
+import { ToDoForm } from "../../Components/ToDoForm/ToDoForm";
+import { ChangeAlertWithStorageListener } from '../../Components/ChangeAlert'
+import "./Home.css";
 
-function App() {
+function Home() {
+  const navigate = useNavigate();
+
   const {
       states,
       setters
@@ -27,13 +30,12 @@ function App() {
     toDos,
     loading,
     error,
-    openModal,
   } = states;
   
   const {
-    setOpenModal,
     addToDo,
     deleteToDo,
+    editToDo,
     completedToDos,
     setSearchValue,
     synchronizeToDos,
@@ -42,8 +44,6 @@ function App() {
   return (
     <>
       <ToDoTitle
-        openModal={openModal}
-        setOpenModal={setOpenModal}
         loading={loading}
       >
         <ToDoCounter completedToDos={completedToDos} totalToDos={totalToDos} />
@@ -71,28 +71,28 @@ function App() {
       >
         {(toDo) => (
           <ToDoItem
-            key={toDo.text}
+            key={toDo.id}
             text={toDo.text}
             completed={toDo.completed}
             checkUncheckToDo={() => {
-              checkUncheckToDo(toDo.text, toDos);
+              checkUncheckToDo(toDo.id, toDos);
             }}
-            deleteToDo={() => {
-              deleteToDo(toDo.text, toDos);
+            onDelete={() => {
+              deleteToDo(toDo.id, toDos);
+            }}
+            onEdit={() => {
+              navigate('/edit/' + toDo.id,
+              {
+                state: { toDo }
+              })
             }}
           />
         )}
       </ToDoList>
-
-      {openModal && (
-        <Modal>
-          <ToDoForm setOpenModal={setOpenModal} addToDo={addToDo}></ToDoForm>
-        </Modal>
-      )}
 
       <ChangeAlertWithStorageListener synchronize={synchronizeToDos} />
     </>
   );
 }
 
-export default App;
+export default Home;

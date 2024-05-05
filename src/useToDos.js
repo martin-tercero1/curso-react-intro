@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuid} from "uuid";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useToDos() {
@@ -8,7 +9,7 @@ function useToDos() {
     synchronize: synchronizeToDos,
     loading,
     error,
-  } = useLocalStorage("TODOS", []);
+  } = useLocalStorage("TODOS_V2", []);
 
   const [searchValue, setSearchValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
@@ -23,25 +24,41 @@ function useToDos() {
     return todoText.includes(searchText);
   });
 
+  const getToDo = (id) => {
+    return toDos.find(toDo => toDo.id === id);
+  }
+
+  const generateId = () => uuid();
+
   const addToDo = (text) => {
     const newToDos = [...toDos];
+    const id = generateId()
+
     newToDos.push({
       text,
       completed: false,
+      id
     })
     saveToDos(newToDos);
   }
 
-  const checkUncheckToDo = (text, toDos) => {
+  const checkUncheckToDo = (id, toDos) => {
     const newToDos = [...toDos];
-    const toDoIndex = newToDos.findIndex((toDo) => toDo.text === text);
+    const toDoIndex = newToDos.findIndex((toDo) => toDo.id === id);
     newToDos[toDoIndex].completed = !newToDos[toDoIndex].completed;
     saveToDos(newToDos);
   };
 
-  const deleteToDo = (text, toDos) => {
+  const editToDo = (id, newText) => {
     const newToDos = [...toDos];
-    const toDoIndex = newToDos.findIndex((toDo) => toDo.text === text);
+    const toDoIndex = newToDos.findIndex((toDo) => toDo.id === id);
+    newToDos[toDoIndex].text = newText;
+    saveToDos(newToDos);
+  };
+
+  const deleteToDo = (id, toDos) => {
+    const newToDos = [...toDos];
+    const toDoIndex = newToDos.findIndex((toDo) => toDo.id === id);
     newToDos.splice(toDoIndex, 1);
     saveToDos(newToDos);
   };
@@ -52,15 +69,15 @@ function useToDos() {
     searchedToDos,
     checkUncheckToDo,
     toDos,
+    getToDo,
     loading,
     error,
-    openModal,
   };
 
   const setters = {
-    setOpenModal,
     addToDo,
     deleteToDo,
+    editToDo,
     completedToDos,
     setSearchValue,
     synchronizeToDos,

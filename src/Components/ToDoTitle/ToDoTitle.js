@@ -1,11 +1,9 @@
 import { cloneElement, Children } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ToDoTitle.css";
 
-function ToDoTitle({setOpenModal, name = "📃 New List", loading, children }) {
-  
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  }
+function ToDoTitle({name = "📃 New List", loading, children }) {
+  const navigate = useNavigate();
 
   return (
     <div className="title">
@@ -27,7 +25,7 @@ function ToDoTitle({setOpenModal, name = "📃 New List", loading, children }) {
         />
         Delete List
       </button>
-      <button className="btn-title" onClick={handleOpenModal}>
+      <button className="btn-title" onClick={() => navigate('/new')}>
         <img
           src="https://img.icons8.com/ios/24/F25551/plus-2-math.png"
           alt="plus-2-math"

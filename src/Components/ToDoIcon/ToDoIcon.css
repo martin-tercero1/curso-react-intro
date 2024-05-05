@@ -17,7 +17,7 @@
   color: var(--green-gradient);
 }
 
-.Icon-uncheck, .Icon-delete {
+.Icon-uncheck, .Icon-delete, .Icon-edit {
   color: var(--second-100);
 }
 
@@ -29,6 +29,10 @@
   margin-right: 20px;
 }
 
-.Icon-delete:hover {
+.Icon-delete:hover, .Icon-edit:hover {
     color: var(--primary);
+}
+
+.Icons-container {
+  display: flex;
 }
